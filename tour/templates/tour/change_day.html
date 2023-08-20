@@ -1,0 +1,36 @@
+{% extends 'base_form.html' %}
+{% load static %}
+{% block main %}
+{% if user.username == "superadmin" %}
+    <div class="form-wrapper-light">
+
+        <a href="{% url 'edit_tour' tour.pk %}" class="btn background-turq">ВЕРНУТЬСЯ В ТУР</a>
+        <br><br><br>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" >ЗАПИСАТЬ</button>
+        </form>
+
+        <br><br><br>
+        <a href="{% url 'new_image_forday' day.pk %}" class="btn background-turq">ДОБАВИТЬ ФОТО</a>
+        <br><br><br>
+
+        {% for image in images %}
+            <img src="{{ image.image.url }}" alt="" class="change-day__image">
+            <br>
+            <span class="title-first__main text-color-turq">
+                {{ image.title }}
+                <a href="{% url 'change_image_forday' image.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                <a href="{% url 'delete_image' image.pk %}"><img src={% static "img/delete_black1.svg" %} alt="Редактировать" class="edit__img-text"></a>
+            </span>
+        {% endfor %}
+
+    </div>
+    
+{% else %}
+<a href={% url "user_login" %} class="btn background-white">АВТОРИЗУЙТЕСЬ</a>
+{% endif %}
+{% endblock %}

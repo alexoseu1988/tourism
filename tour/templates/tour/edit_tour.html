@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+{% if user.username == "superadmin" %}
+    <header class="header" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
+        <a href="{% url 'administrator' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
+        <div class="header__menu" onclick="openNav()">&equiv;</div>
+        <a href="{% url 'change_background1' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img"></a>
+        <div class="header__box">
+            <h1 class="title-first">
+                <span class="title-first__main text-color-white">
+                    {{ tour.title1 }} 
+                    <a href="{% url 'change_first_title' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                </span>
+                <span class="title-first__secondary text-color-white">
+                    {{ tour.title2 }} 
+                    <a href="{% url 'change_second_title' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                </span>
+            </h1>
+            <h2 class="title-secondary text-color-white">
+                {{ tour.dateStart|date:"d E" }} <a href="{% url 'change_date_start' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a> - 
+                {{ tour.dateEnd|date:"d E" }} <a href="{% url 'change_date_end' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
+            </h2>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-change-tour">
+            <div class="section-change-tour__wrapper">
+                {% if tour.isOutside %}
+                <span>ЦЕЙ ТУР Є ЗАКОРДОННИМ</span>
+                <a class="btn2 background-turq" href="{% url 'relocate_tour' tour.pk %}">ЗМІНИТИ НА ВНУТРІШНІЙ</a>
+                {% else %}
+                <span>ЦЕЙ ТУР Є ВНУТРІШНІМ</span>
+                <a class="btn2 background-turq" href="{% url 'relocate_tour' tour.pk %}">ЗМІНИТИ НА ЗАКОРДОННИЙ</a>
+                {% endif %}</a>
+            </div>
+            <div class="section-change-tour__wrapper">
+                {% if tour.isOneDay %}
+                <span>ЦЕ ПОЇЗДКА ВИХІДНОГО ДНЯ</span>
+                <a class="btn2 background-turq" href="{% url 'short_long_tour' tour.pk %}">ЗМІНИТИ НА ПОВНОЦІННИЙ ТУР</a>
+                {% else %}
+                <span>ЦЕ ПОВНОЦІННИЙ ТУР НА ДЕКІЛЬКА ДНІВ</span>
+                <a class="btn2 background-turq" href="{% url 'short_long_tour' tour.pk %}">ЗМІНИТИ НА ПОЇЗДКУ ВИХІДНОГО ДНЯ</a>
+                {% endif %}</a>
+            </div>
+        </section>
+
+        <section class="section-about margin-bottom-80">
+            <div>
+                <h2 class="section-title text-color-turq">
+                    {{ tour.tagline }}
+                    <a href="{% url 'change_tagline' tour.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                </h2>
+            </div>
+            <div class="section-about__wrapper">
+                <div class="section-about__part">
+                    <p>
+                        {{ tour.description|safe }}
+                        <a href="{% url 'change_description' tour.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                    </p>
+                </div>
+                <div class="section-about__part">
+                    <div class="composition">
+                        <div class="mySlides"></div>
+                        <img src="{{ tour.image1Section2.url }}" alt="" class="composition__photo composition__photo_1">
+                        <img src="{{ tour.image2Section2.url }}" alt="" class="composition__photo composition__photo_2">
+                        <img src="{{ tour.image3Section2.url }}" alt="" class="composition__photo composition__photo_3">
+                        <a href="{% url 'change_image1' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-1"></a>
+                        <a href="{% url 'change_image2' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-2"></a>
+                        <a href="{% url 'change_image3' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-3"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="shedule">
+            <div>
+                <h2 class="section-title text-color-turq">ПРОГРАММА ТУРА</h2>
+                <div class="text-center margin-bottom-30">
+                    <a href="{% url "new_day" tour.pk %}" class="btn background-white">ДОБАВИТЬ ДЕНЬ</a>
+                </div>
+            </div>
+            {% for day in days %}
+                <div class="shedule__wrapper">
+                    <a href="{% url 'change_day' day.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img"></a>
+                    <a href="{% url 'delete_day' day.pk %}"><img src={% static "img/delete_black1.svg" %} alt="Редактировать" class="delete__img"></a>
+                    <div id="slider_{{ day.pk }}" class="shedule__photo">
+                        {% for image in day.images.all %}
+                        <div class="shedule__myslide">
+                            <img src={{image.image.url}} alt="">
+                            <div class="shedule__photo-text">{{image.title}}</div>
+                        </div>
+                        {% endfor %}
+
+                        <a class="prev" onclick="plusSlides('slider_{{ day.pk }}', -1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides('slider_{{ day.pk }}', 1)">&#10095;</a>
+
+                        <div class="dots">
+                            {% for image in day.images.all %}
+                            <span class="dot" onclick="currentSlide('slider_{{ day.pk }}', {{ forloop.counter }})"></span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="shedule__text">
+                        <h3>ДЕНЬ {{day.number}}</h3>
+                        <p>{{day.description|safe}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <section class="inclusive">
+            <div>
+                <h2 class="section-title text-color-turq">ВХОДИТЬ У ВАРТІСТЬ</h2>
+            </div>
+            <div class="text-center margin-bottom-30">
+                <a href="{% url "new_inclusive" tour.pk %}" class="btn background-white">ДОДАТИ КАРТКУ</a>
+                <a href="{% url "new_icon" tour.pk %}" class="btn background-white">ДОДАТИ ІКОНКУ</a>
+            </div>
+            <div class="inclusive__wrapper">
+                {% for card in cards %}
+                <div class="inclusive__card">
+                    <img src="{{card.icon.icon.url}}" alt="">
+                    <h3>{{card.title}}</h3>
+                    <p>{{card.description}}</p>
+                    <a href="{% url 'change_inclusive' card.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img"></a>
+                    <a href="{% url 'delete_inclusive' card.pk %}"><img src={% static "img/delete_black1.svg" %} alt="Редактировать" class="delete__img"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="inclusive" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundAdditionalServices.url }}) center / cover no-repeat;">
+            <a href="{% url 'change_background2' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img"></a>
+            <div>
+                <h2 class="section-title text-color-white">ДОДАТКОВІ ПОСЛУГИ</h2>
+            </div>
+            <div class="text-center margin-bottom-30">
+                <a href="{% url "new_not_inclusive" tour.pk %}" class="btn background-white">ДОДАТИ КАРТКУ</a>
+            </div>
+            <div class="inclusive__wrapper">
+                {% for card in not_cards %}
+                <div class="inclusive__card">
+                    <img src="{{card.icon.icon.url}}" alt="">
+                    <h3>{{card.title}}</h3>
+                    <p class="price">{{card.price}}</p>
+                    <p>{{card.description}}</p>
+                    <a href="{% url 'change_not_inclusive' card.pk %}"><img src={% static "img/edit_black.svg" %} alt="Редактировать" class="edit__img"></a>
+                    <a href="{% url 'delete_not_inclusive' card.pk %}"><img src={% static "img/delete_black1.svg" %} alt="Редактировать" class="delete__img"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="inclusive">
+            <div>
+                <h2 class="section-title text-color-turq">ВАРТІСТЬ ПОЇЗДКИ</h2>
+            </div>
+            <div class="inclusive__wrapper">
+                <div class="inclusive__price-card">
+                    <h2>ДЛЯ ДОРОСЛИХ</h2>
+                    <p class='price'>{{tour.priceAdult}}</p>
+                    <a href="{% url 'change_price_adult' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                    <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
+                </div>
+                <div class="inclusive__price-card">
+                    <h2>ДЛЯ ДІТЕЙ</h2>
+                    <p class='price'>{{tour.priceChild}}</p>
+                    <a href="{% url 'change_price_child' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
+                    <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
+                </div>
+            </div>
+        </section>
+        <section class="order" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSectionBooking.url }}) center / cover no-repeat;">
+            <a href="{% url 'change_background3' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img"></a>
+            <div class="order__wrapper">
+                <div>
+                    <h2 class="section-title text-color-turq" id="order">ЗАБРОНЮВАТИ ТУР</h2>
+                </div>
+                <div class="form-wrapper-light">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form2.media }}
+                        {{ form2.as_p }}
+                        <button type="submit">ЗАБРОНЮВАТИ</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="section-feedback">
+            <div>
+                <h2 class="section-title text-color-turq">ВІДГУКИ НАШИХ КЛІЄНТІВ</h2>
+            </div>
+            <div class="section-feedback__wrapper">
+                {% for review in reviews %}
+                <div class="section-feedback__feedback">
+                    <div>
+                        <img src={% static "img/star-turq.svg" %} alt="Відгук">
+                    </div>
+                    <div>
+                        <p><span>{{review.name}}</span> {{review.date}}</p>
+                        <p>{{review.review|safe}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-wrapper">
+                <h2>ПОДІЛІТЬСЯ СВОЇМИ ВРАЖЕННЯМИ ПРО ПОЇЗДКУ</h2>
+                <hr>
+                <br>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form1.media }}
+                    {{ form1.as_p }}
+                    <button type="submit">ДОДАТИ КОМЕНТАР</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="inclusive" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
+            <div>
+                <h2 class="section-title text-color-white">НАЙБЛИЖЧІ ПОЇЗДКИ</h2>
+            </div>
+            <div class="inclusive__wrapper">
+                {% for tour in upcoming_tours %}
+                <div class="inclusive__popular-card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                    <h2>{{tour.title1}}</h2>
+                    <h2>
+                        {{ tour.dateStart|date:"d E" }} - <br> {{ tour.dateEnd|date:"d E" }}
+                    </h2>
+                    <a href="{% url 'edit_tour' tour.pk %}" class="btn background-white">ДЕТАЛЬНІШЕ</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    
+{% else %}
+<a href={% url "user_login" %} class="btn background-white">АВТОРИЗУЙТЕСЬ</a>
+{% endif %}
+{% endblock %}

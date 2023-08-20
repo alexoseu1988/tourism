@@ -1,0 +1,436 @@
+$color-grey: #777777
+$color-brown-light: #ba8554
+$color-brown-dark: #a14f03
+$color-black: #000000
+$color-white: #ffffff
+$color-white-transparent: rgba(255, 255, 255, 0.9)
+$color-grey-transparent: rgba(70, 70, 70, 0.5)
+$color-turq: #1F9DAC
+    
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html
+    font-size: 10px
+
+body
+    font-family: "Roboto"
+    font-weight: 400
+    color: #777777
+    font-size: 1.6rem
+    letter-spacing: .2rem
+    padding: 0rem
+    background-color: white
+
+h3
+    margin-bottom: 2rem
+
+p
+    margin-bottom: 3rem
+
+li
+    margin-bottom: 1rem
+
+.navigation
+    position: fixed
+    display: block
+    height: 0
+    right: 0
+    height: 100vh
+    width: 25%
+    background-color: $color-turq
+    color: $color-white
+    text-align: center
+    z-index: 3
+    &__cross
+        position: absolute
+        display: block
+        top: 5rem
+        right: 5rem
+        height: 5rem
+        width: 5rem
+    &__lnk
+        position: absolute
+        top: 30%
+        left: 50%
+        transform: translate(-50%, -50%)
+    &__lnk li
+        margin-bottom: 2rem
+        list-style-type: none
+    &__lnk li a
+        &:link, &:visited
+            color: $color-white
+            font-size: 3rem
+            text-decoration: none
+            style-type: none
+        &:hover
+            border-bottom: .1rem solid $color-white
+
+    
+.container
+    background-color: #f7f7f7
+
+.header
+    position: relative
+    height: 80vh
+    &__logo
+        position: absolute
+        top: 5rem
+        left: 5rem
+        height: 7rem
+        width: 5.6rem
+    &__box
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: 100%
+        text-align: center
+    &__menu
+        position: absolute
+        top: 5rem
+        right: 5rem
+        height: 7rem
+        width: 7rem
+        border-radius: 50%
+        background-color: $color-white
+        color: $color-grey
+        font-size: 6rem
+        font-weight: 800
+        text-align: center
+
+.title-first
+    animation-name: leftToRight
+    animation-duration: 1.5s
+    animation-timing-function: ease
+    text-transform: uppercase
+    &__main
+        display: block
+        font-weight: 800
+        font-size: 5rem
+        line-height: 6rem
+        letter-spacing: 1rem
+    &__secondary
+        display: block
+        font-weight: 400
+        font-size: 4rem
+        line-height: 4.8rem
+        letter-spacing: .5rem
+        margin-bottom: 6.5rem
+
+.title-secondary
+    color: $color-white
+    display: block
+    font-weight: 800
+    font-size: 4rem
+    line-height: 6rem
+    letter-spacing: 1rem
+        
+.btn
+    &:link, &:visited
+        text-decoration: none
+        padding: 1.5rem 4rem
+        border-radius: 5rem
+        display: inline-block
+        transition: all .2s
+        font-size: 2rem
+    &:hover
+        transform: translateY(-.3rem)
+        box-shadow: (0 .4rem .4rem rgba($color-black, 0.5))
+    &:active
+        transform: translateY(.2rem)
+        
+.section-about
+    padding-top: 8rem
+    &__wrapper
+        width: 100%
+        display: flex
+        justify-content: space-around
+    &__part
+        width: 50%
+        padding: 3rem
+
+.section-title
+        font-size: 3.6rem
+        letter-spacing: 1rem
+        font-weight: 800
+        text-align: center
+        margin-bottom: 5rem
+
+.composition
+    position: relative
+    min-height: 45rem
+    &__photo
+        width: 55%
+        border-radius: .5rem
+        position: absolute
+        &_1
+            top: 0rem
+            left: 2rem
+        &_2
+            top: 8rem
+            left: 35%
+        &_3
+            top: 16rem
+            left: 10rem
+
+.to-front
+    &:hover
+        z-index: 3
+        transform: scale(1.3)
+
+.shedule
+    margin: 0 8rem
+    &__wrapper
+        width: 100%
+        position: relative
+        display: flex
+        justify-content: space-around
+        margin-bottom: 3rem
+        background-color: $color-white
+        border-radius: 1rem
+    &__photo
+        position: relative
+        width: 40%
+        img
+            width: 100%
+            height: 40rem
+    &__text
+        width: 60%
+        padding: 3rem 7rem
+    .prev, .next
+        cursor: pointer
+        position: absolute
+        top: 50%
+        width: auto
+        margin-top: -22px
+        padding: 16px
+        color: white
+        font-weight: bold
+        font-size: 18px
+        transition: 0.6s ease
+    .next
+        right: 0
+    .prev:hover, .next:hover
+        background-color: rgba(0, 0, 0, 0.8)
+    &__photo-text
+        color: $color-white
+        text-shadow: (0 0 3rem rgba($color-black, 1))
+        font-size: 20px
+        font-weight: 600
+        padding: 8px 12px
+        position: absolute
+        bottom: 40px
+        left: 50%
+        transform: translateX(-50%)
+    .dots
+        position: absolute
+        bottom: 20px
+        left: 50%
+        transform: translateX(-50%)
+    .dot
+        cursor: pointer
+        height: 13px
+        width: 13px
+        margin: 0 2px
+        background-color: $color-white
+        border-radius: 50%
+        display: inline-block
+        transition: background-color 0.6s ease
+    .active, .dot:hover
+        background-color: $color-turq
+        
+.inclusive
+    position: relative
+    padding: 5rem 13rem
+    &__wrapper
+        width: 100%
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+        gap: 6rem
+    &__card
+        position: relative
+        width: 22%
+        height: 45rem
+        padding: 5rem 3rem
+        background-color: $color-white-transparent
+        box-shadow: (0 0 2rem rgba($color-grey, 0.5))
+        text-align: center
+        border-radius: 3rem
+    img
+        width: 7rem
+        margin-bottom: 3rem
+    &__price-card
+        height: 50rem
+        padding: 5rem
+        color: $color-white
+        text-shadow: (0 0 3rem rgba($color-black, 0.9))
+        background: linear-gradient(135deg, rgba(31, 157, 172, 0.58) 3.65%, #1F9DAC 100%)
+        box-shadow: (0 0 2rem rgba($color-grey, 0.5))
+        text-align: center
+        border-radius: 3rem
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+    &__popular-card
+        height: 50rem
+        width: 25%
+        padding: 5rem
+        box-shadow: (0 0 4rem rgba($color-white, 0.7))
+        border: solid $color-white .1rem
+        text-align: center
+        border-radius: 3rem
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+
+.our-tours
+    padding: 5rem 13rem
+    h2
+        text-transform: uppercase
+    &__wrapper
+        width: 100%
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+        gap: 6rem
+    &__card
+        width: 22%
+        height: 40rem
+        padding: 5rem 3rem
+        box-shadow: (0 0 2rem rgba($color-grey, 0.5))
+        text-align: center
+        border-radius: 3rem
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+
+.price
+    font-weight: 600
+    font-size: 4rem
+
+
+.order
+    position: relative
+    padding: 10rem
+    &__wrapper
+        background-color: $color-white-transparent
+        padding: 5rem
+        text-align: center
+
+.section-feedback
+    padding: 5rem
+    &__feedback
+        position: relative
+        background-color: $color-white
+        padding: 3rem
+        margin-bottom: 3rem
+        border-radius: 1rem
+        border: .1rem solid $color-turq
+        & span
+            display: inline-block
+            border-bottom: .1rem solid $color-turq
+
+.change-day
+    &__image
+        width: 60rem
+
+.text-center
+    text-align: center
+
+.text-color-white
+    color: $color-white
+    text-shadow: (0 0 3rem rgba($color-black, 1))
+
+.background-white
+    background-color: $color-white
+    color: $color-grey
+
+.background-turq
+    background-color: $color-turq
+    color: $color-white
+
+.text-color-turq
+    color: $color-turq
+
+.margin-bottom-30
+    margin-bottom: 3rem
+
+.margin-bottom-80
+    margin-bottom: 8rem
+
+.background
+    background: linear-gradient(90deg, $color-grey-transparent 0.03%, $color-grey-transparent 99.94%), url(../img/main.jpg) center / cover no-repeat
+
+.edit
+    z-index: 2
+    &__img
+        width: 5rem
+        height: 5rem
+        position: absolute
+        right: 3rem
+        bottom: 3rem
+    &__img-text
+        width: 5rem
+        height: 5rem
+    &__img-1
+        width: 5rem
+        height: 5rem
+        position: absolute
+        top: 2rem
+        left: 4rem
+    &__img-2
+        width: 5rem
+        height: 5rem
+        position: absolute
+        top: 10rem
+        left: 37%
+    &__img-3
+        width: 5rem
+        height: 5rem
+        position: absolute
+        top: 18rem
+        left: 12rem
+
+.delete
+    z-index: 2
+    &__img
+        width: 5rem
+        height: 5rem
+        position: absolute
+        right: 9rem
+        bottom: 3rem
+
+.footer
+    color: $color-white
+    background-color: #333333
+    padding: 6rem
+    &__logo
+        margin: auto
+        margin-bottom: 5rem
+        height: 7rem
+        width: 5.6rem
+    &__lnk
+        display: flex
+        gap: 7rem
+        justify-content: center
+    &__lnk li
+        list-style-type: none
+    &__lnk li a
+        &:link, &:visited
+            color: $color-white
+            font-size: 3rem
+            text-decoration: none
+            style-type: none
+        &:hover
+            border-bottom: .1rem solid $color-white
+
+@keyframes leftToRight
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+        

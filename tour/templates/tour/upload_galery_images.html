@@ -1,0 +1,15 @@
+{% extends 'base_form.html' %}
+{% load static %}
+{% block main %}
+{% if user.username == "superadmin" %}
+    <div class="form-wrapper-light">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.images }}
+            <button type="submit">ЗАВАНТАЖИТИ ЗОБРАЖЕННЯ</button>
+        </form>
+    </div>
+{% else %}
+    <a href={% url "user_login" %} class="btn background-white">АВТОРИЗУЙТЕСЬ</a>
+{% endif %}
+{% endblock %}

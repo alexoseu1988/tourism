@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <header class="form-header margin-bottom-30" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
+        <a href="{% url 'home' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
+        <div class="header__menu" onclick="openNav()">&equiv;</div>
+        <div class="header__box">
+            <h1 class="title-first">
+                <span class="title-first__main text-color-white">
+                    {{ tour.title1 }} 
+                </span>
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="carousel-3d">
+            <figure>
+                {% for image in tour.images.all %}
+                    <div><img src={{image.image.url}} alt="{{tour.title1}}"></div>
+                {% endfor %}
+            </figure>
+            <nav>
+                <button class="nav prev">Назад</button>
+                <button class="nav next">Вперед</button>
+            </nav>
+        </div>
+        
+    </main>
+
+    
+    {% if user.username == "superadmin" %}
+        <a href={% url "upload_galery_images" tour.pk %} class="btn background-white">ЗАВАНТАЖИТИ ЗОБРАЖЕННЯ</a>
+        <a href={% url "delete_tour_galery" tour.pk %} class="btn background-white">ВИДАЛИТИ ГАЛЕРЕЮ</a>
+    {% endif %}
+{% endblock %}

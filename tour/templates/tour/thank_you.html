@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <header class="header" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
+        <a href="{% url 'administrator' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
+        <div class="header__menu" onclick="openNav()">&equiv;</div>
+        <div class="header__box">
+            <h1 class="title-first">
+                <span class="title-first__main text-color-white">
+                    ДЯКУЄМО ЗА ЗАМОВЛЕННЯ!
+                </span>
+                <span class="title-first__secondary text-color-white">
+                    ОПЕРАТОР ЗАТЕЛЕФОНУЄ ВАМ НАЙБЛИЖЧИМ ЧАСОМ
+                </span>
+            </h1>
+            <a href="{% url 'home' %}" class="btn background-white">ПОВЕРНУТИСЬ НА ГОЛОВНУ</a>
+        </div>
+    </header>
+    
+{% endblock %}

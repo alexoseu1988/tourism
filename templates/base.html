@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="shortcut icon" href="{% static "img/logo2turq.ico" %}" type="image/x-icon">
+    <title>Авторські тури з Оленою Олійниковою</title>
+</head>
+<body>
+    {% include 'includes/_nav.html' %}
+    <div class="container">
+        {% block main %}
+        {% endblock %}
+    </div>
+    {% include 'includes/_footer.html' %}
+</body>
+<script src={% static "script.js" %}></script>
+</html>

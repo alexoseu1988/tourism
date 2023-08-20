@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<header class="form-header background">
+    <a href="{% url 'home' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
+    <div class="header__menu" onclick="openNav()">&equiv;</div>
+    <div class="header__box">
+        <h1 class="title-first">
+            <span class="title-first__main text-color-white">ФОТОГАЛЕРЕЯ</span>
+        </h1>
+    </div>
+</header>
+<section class="our-tours">
+    <div>
+        <h2 class="section-title text-color-turq" id="tours">ТУРИ</h2>
+    </div>
+    <div class="our-tours__wrapper">
+        {% for tour in tours %}
+            <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                <h2>{{ tour.title1 }}</h2>
+                <a class="btn2 background-white" href="{% url 'tour_galery' tour.pk %}">ПЕРЕГЛЯНУТИ</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="our-tours">
+    <div>
+        <h2 class="section-title text-color-turq" id="holidays">ПОЇЗДКИ ВИХІДНОГО ДНЯ</h2>
+    </div>
+    <div class="our-tours__wrapper">
+        {% for tour in view_holidays %}
+            <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                <h2>{{ tour.title1 }}</h2>
+                <a class="btn2 background-white" href="{% url 'tour_galery' tour.pk %}">ПЕРЕГЛЯНУТИ</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% if user.username == "superadmin" %}
+<section class="our-tours">
+    <div>
+        <h2 class="section-title text-color-turq" id="tours">ВСІ ТУРИ</h2>
+    </div>
+    <div class="our-tours__wrapper">
+        {% for tour in tours %}
+            <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                <h2>{{ tour.title1 }}</h2>
+                <a class="btn background-white" href="{% url 'tour_galery' tour.pk %}">ПЕРЕГЛЯНУТИ</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="our-tours">
+    <div>
+        <h2 class="section-title text-color-turq" id="holidays">ВСІ ПОЇЗДКИ ВИХІДНОГО ДНЯ</h2>
+    </div>
+    <div class="our-tours__wrapper">
+        {% for tour in holidays %}
+            <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                <h2>{{ tour.title1 }}</h2>
+                <a class="btn background-white" href="{% url 'tour_galery' tour.pk %}">ПЕРЕГЛЯНУТИ</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

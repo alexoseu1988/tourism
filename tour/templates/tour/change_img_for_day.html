@@ -1,0 +1,22 @@
+{% extends 'base_form.html' %}
+{% load static %}
+{% block main %}
+{% if user.username == "superadmin" %}
+    <div class="form-wrapper-light">
+
+        <a href="{% url 'change_day' day.pk %}" class="btn background-turq">ПОВЕРНУТИСЬ ДО РЕДАГУВАННЯ ДНЯ</a>
+        <br><br><br>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" >ЗАПИСАТИ</button>
+        </form>
+
+    </div>
+    
+{% else %}
+<a href={% url "user_login" %} class="btn background-white">АВТОРИЗУЙТЕСЬ</a>
+{% endif %}
+{% endblock %}

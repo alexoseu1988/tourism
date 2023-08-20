@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <header class="header background">
+        <img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo">
+        <div class="header__menu" onclick="openNav()">&equiv;</div>
+        <div class="header__box">
+            <h1 class="title-first">
+                <span class="title-first__main text-color-white">ТУР ВАШОЇ МРІЇ ЧЕКАЄ НА ВАС</span>
+                <span class="title-first__secondary text-color-white">ЗАЛИШТЕ ПРИЄМНІ СПОГАДИ НА ВСЕ ЖИТТЯ</span>
+            </h1>
+            <a href="#tours" class="btn background-white">ОБРАТИ ТУР</a>
+            <a href="#holidays" class="btn background-white">ОБРАТИ ПОЇЗДКУ ВИХІДНОГО ДНЯ</a>
+        </div>
+    </header>
+
+    <section class="our-tours margin-bottom-30">
+        <div>
+            <h2 class="section-title text-color-turq" id="tours">НАШІ ТУРИ</h2>
+        </div>
+        <div class="our-tours__wrapper">
+            {% for tour in tours %}
+                <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                    <h2>{{ tour.title1 }}</h2>
+                    <h2>{{ tour.dateStart|date:"d E" }} - <br> {{ tour.dateEnd|date:"d E" }}</h2>
+                    <a class="btn2 background-white" href="{% url 'tour' tour.pk %}">ДЕТАЛЬНІШЕ</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="our-tours margin-bottom-80">
+        <div>
+            <h2 class="section-title text-color-turq" id="holidays">ПОЇЗДКИ ВИХІДНОГО ДНЯ</h2>
+        </div>
+        <div class="our-tours__wrapper">
+            {% for tour in holidays %}
+                <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
+                    <h2>{{ tour.title1 }}</h2>
+                    <h2>{{ tour.dateStart|date:"d E" }}</h2>
+                    <a class="btn2 background-white" href="{% url 'tour' tour.pk %}">ДЕТАЛЬНІШЕ</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="inclusive" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({% static "img/second.jpg" %}) center / cover no-repeat;">
+        <div>
+            <h2 class="section-title text-color-white">ЧОМУ ВАРТО ОБИРАТИ НАС?</h2>
+        </div>
+
+        <div class="inclusive__wrapper">
+            {% for card in why_we %}
+                <div class="inclusive__card">
+                    <img src="{{card.icon.icon.url}}" alt="{{card.icon.title}}">
+                    <h3>{{card.title}}</h3>
+                    <p>{{card.description}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section-feedback">
+        <div>
+            <h2 class="section-title text-color-turq">ВІДГУКИ НАШИХ КЛІЄНТІВ</h2>
+        </div>
+        <div class="section-feedback__wrapper">
+            {% for review in reviews %}
+            <div class="section-feedback__feedback">
+                <div>
+                    <img src={% static "img/star-turq.svg" %} alt="Відгук">
+                </div>
+                <div>
+                    <p><span>{{review.name}}</span> {{review.date}}</p>
+                    <p><a href="{% url 'tour' review.tour.pk %}">{{review.tour}}</a></p>
+                    <p>{{review.review|safe}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

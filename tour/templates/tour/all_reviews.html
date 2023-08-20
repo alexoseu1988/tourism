@@ -1,0 +1,29 @@
+{% extends 'base_form.html' %}
+{% load static %}
+{% block main %}
+{% if user.username == "superadmin" %}
+    <div class="container">
+        <section class="section-feedback">
+            <div>
+                <h2 class="section-title text-color-turq">ОТЗЫВЫ НАШИХ КЛИЕНТОВ</h2>
+            </div>
+            {% for review in reviews %}
+            <div class="section-feedback__feedback">
+                <div>
+                    <img src={% static "img/star-turq.svg" %} alt="Відгук">
+                </div>
+                <div>
+                    <p><span>{{review.name}}</span> {{review.date}}</p>
+                    <p><a href="{% url 'tour' review.tour.pk %}">{{review.tour}}</a></p>
+                    <p>{{review.review|safe}}</p>
+                    <a href="{% url 'delete_review' review.pk %}"><img src={% static "img/delete_black1.svg" %} alt="Редактировать" class="delete__img"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+
+{% else %}
+<a href={% url "user_login" %} class="btn background-white">АВТОРИЗУЙТЕСЬ</a>
+{% endif %}
+{% endblock %}
