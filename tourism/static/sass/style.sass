@@ -223,6 +223,7 @@ li
         @include respond(tablet)
             display: block
             margin: 2rem 10%
+            text-align: center
         @include respond(phone)
             display: block
             margin: 2rem 10%
@@ -582,6 +583,38 @@ li
                 &:link, &:visited
                     color: $color-turq
 
+.section-apply
+    padding: 5rem 5%
+    &__wrapper
+        display: flex
+        gap: 2%
+        justify-content: left
+        flex-wrap: wrap
+    &__apply
+        width: 100%
+        position: relative
+        background-color: $color-white
+        padding: 3rem
+        margin-bottom: 3rem
+        border-radius: 1rem
+        border: .1rem solid $color-white
+        display: flex
+        gap: 3rem
+        justify-content: left
+        .number
+            color: $color-turq
+            font-size: 5rem
+        & span
+            display: inline-block
+            font-size: 2.5rem
+            font-weight: 800
+            margin-right: 3rem
+            border-bottom: .2rem solid $color-turq
+        p
+            a
+                &:link, &:visited
+                    color: $color-turq
+
 
 .form-wrapper
     @include form-style($color-footer, $color-white, $color-white)
@@ -617,6 +650,9 @@ li
 
 .margin-bottom-80
     margin-bottom: 8rem
+
+.size-20
+    font-size: 2rem
 
 .background
     background: linear-gradient(90deg, $color-grey-transparent 0.03%, $color-grey-transparent 99.94%), url(../img/main.jpg) center / cover no-repeat
@@ -663,10 +699,10 @@ li
 .footer
     color: $color-white
     background-color: #333333
-    padding: 6rem
+    padding: 1.5rem
     &__logo
         margin: auto
-        margin-bottom: 5rem
+        margin-bottom: 1.5rem
         height: 20rem
         width: 20rem
     &__lnk

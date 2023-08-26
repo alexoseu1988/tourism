@@ -3,7 +3,7 @@
     <img src={% static "img/xmark-white.svg" %} alt="Закрыть" class="navigation__cross" onclick="closeNav()">
     <ul class="navigation__lnk">
         <li><a href="{% url "home" %}">НА ГОЛОВНУ</a></li>
-        <li><a href="#">ОФОРМЛЕННЯ ТУРУ</a></li>
+        <li><a href="{% url "how_to_apply" %}">ОФОРМЛЕННЯ ТУРУ</a></li>
         <li><a href="{% url "documents" %}">ДОКУМЕНТИ</a></li>
         <li><a href="{% url "galery" %}">ФОТОГАЛЕРЕЯ</a></li>
         <li><a href="#">КОНТАКТИ</a></li>

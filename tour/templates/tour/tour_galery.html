@@ -2,7 +2,7 @@
 {% load static %}
 {% block main %}
 
-    <header class="form-header margin-bottom-30" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
+    <header class="header margin-bottom-30" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.backgroundSection1.url }}) center / cover no-repeat;">
         <a href="{% url 'home' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
         <div class="header__menu" onclick="openNav()">&equiv;</div>
         <div class="header__box">
@@ -10,7 +10,9 @@
                 <span class="title-first__main text-color-white">
                     {{ tour.title1 }} 
                 </span>
+                <span class="title-first__secondary text-color-white"></span>
             </h1>
+            <a href="{% url 'tour' tour.pk %}" class="btn background-white">ПОВЕРНУТИСЬ ДО ТУРУ</a>
         </div>
     </header>
 

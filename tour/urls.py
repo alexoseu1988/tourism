@@ -11,6 +11,7 @@ urlpatterns = [
     path('all_reviews', all_reviews, name='all_reviews'),
     path('galery', galery, name='galery'),
     path('documents', documents, name='documents'),
+    path('how_to_apply', how_to_apply, name='how_to_apply'),
     
     ## Страницы с турами
     path('tour/<int:tour_id>/', tour, name='tour'),
