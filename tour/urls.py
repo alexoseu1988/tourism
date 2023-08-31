@@ -12,6 +12,7 @@ urlpatterns = [
     path('galery', galery, name='galery'),
     path('documents', documents, name='documents'),
     path('how_to_apply', how_to_apply, name='how_to_apply'),
+    path('contacts', contacts, name='contacts'),
     
     ## Страницы с турами
     path('tour/<int:tour_id>/', tour, name='tour'),

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <header class="header background">
+        <a href="{% url 'home' %}"><img src={% static "img/logo2.svg" %} alt="Логотип" class="header__logo"></a>
+        <div class="header__menu" onclick="openNav()">&equiv;</div>
+        <div class="header__box">
+            <h1 class="title-first">
+                <span class="title-first__main text-color-white">НАШІ КОНТАКТИ</span>
+            </h1>
+        </div>
+    </header>
+    <br><br>
+    <section class="section-contacts">
+        <div class="section-contacts__wrapper">
+            <div>
+                <h2 class="section-title text-color-turq">ОРГАНІЗАТОР ТУРІВ</h2>
+            </div>
+            <br><br><br><br>
+            <div class="section-contacts__contacts">
+                <div>
+                    <img src={% static "img/phone.svg" %} alt="Телефон">
+                </div>
+                <div>
+                    <p><span>+38(073)140-29-53</span></p>
+                </div>
+            </div>
+            <div class="section-contacts__contacts">
+                <div>
+                    <img src={% static "img/instagram.svg" %} alt="Інстаграм">
+                </div>
+                <div>
+                    <p><span><a href="https://www.instagram.com/oleinikova9234/">instagram.com/oleinikova9234/</a></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="section-contacts__wrapper">
+            <div>
+                <h2 class="section-title text-color-turq">МЕНЕДЖЕР</h2>
+            </div>
+            <br><br><br><br>
+            <div class="section-contacts__contacts">
+                <div>
+                    <img src={% static "img/phone.svg" %} alt="Телефон">
+                </div>
+                <div>
+                    <p><span>+38(068)143-52-68</span></p>
+                </div>
+            </div>
+            <div class="section-contacts__contacts">
+                <div>
+                    <img src={% static "img/instagram.svg" %} alt="Інстаграм">
+                </div>
+                <div>
+                    <p><span><a href="https://www.instagram.com/h.chaplynska/">instagram.com/h.chaplynska/</a></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="section-contacts__wrapper">
+            <div>
+                <h2 class="section-title text-color-turq">ЧАТ КЛІЄНТІВ</h2>
+            </div>
+            <br><br><br><br>
+            <div class="section-contacts__contacts">
+                <div>
+                    <img src={% static "img/viber.svg" %} alt="Інстаграм">
+                </div>
+                <div>
+                    <p><span><a href="https://invite.viber.com/?g2=AQAE1YNVohVkUEviUyJKcqbo12Ry58TKQrOtr29ZPkN4%2FCl9SjcM1c8jF2y7vGDk">Чат клієнтів у Viber</a></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

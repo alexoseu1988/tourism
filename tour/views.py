@@ -46,6 +46,9 @@ def documents(request):
 def how_to_apply(request):
     return render(request, 'tour/how_to_apply.html', {})
 
+def contacts(request):
+    return render(request, 'tour/contacts.html', {})
+
 def administrator(request):
     tours = Tour.objects.filter(isOneDay=False)
     holidays = Tour.objects.filter(isOneDay=True)
