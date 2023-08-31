@@ -13,7 +13,7 @@ from django.core.mail import send_mail
 
 today = date.today()
 
-## Титульные страницы
+## Форма входа
 
 def user_login(request):
     if request.method == 'POST':
@@ -29,6 +29,8 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('administrator')
+
+## Титульные страницы
         
 def index(request):
     tours = Tour.objects.filter(isActive=True, isOneDay=False)
@@ -58,10 +60,11 @@ def all_reviews(request):
 
 def galery(request):
     tours = Tour.objects.filter(isActive=True, isOneDay=False)
+    view_tours = [i for i in tours if (len(i.images.all()) > 0)]
     holidays = Tour.objects.filter(isActive=True, isOneDay=True)
     view_holidays = [i for i in holidays if (len(i.images.all()) > 0)]
     return render(request, 'tour/galery.html', 
-                  {'tours': tours, 'holidays': holidays, 'view_holidays': view_holidays})
+                  {'tours': tours, 'view_tours': view_tours, 'holidays': holidays, 'view_holidays': view_holidays})
 
 ## Страницы с турами
 

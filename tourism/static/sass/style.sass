@@ -329,6 +329,7 @@ li
     &__photo
         position: relative
         width: 40%
+        overflow: hidden
         @include respond(desctop)
             width: 50%
         @include respond(tablet)
@@ -336,8 +337,13 @@ li
         @include respond(phone)
             width: 100%
         img
-            width: 100%
+            position: absolute
+            top: 0
+            left: 0
+            min-width: 100%
+            width: auto
             min-height: 40rem
+            height: 100%
             @media(max-width: 1650px)
                 min-height: 37rem
             @media(max-width: 1500px)
@@ -348,10 +354,14 @@ li
                 min-height: 40rem
             @media(max-width: 1050px)
                 min-height: 37rem
+            @media(max-width: 900px)
+                position: relative
+                width: 100%
             @media(max-width: 600px)
                 min-height: 42rem
     &__text
-        width: 60%
+        flex: 1
+        width: 40%
         @include respond(desctop)
             width: 50%
         @include respond(tablet)
@@ -756,6 +766,8 @@ li
         width: 90%
     @media(max-width: 650px)
         width: 95%
+    @media(max-width: 400px)
+        width: 99%
     -webkit-transform-style: preserve-3d
     transform-style: preserve-3d
     transition: -webkit-transform 0.5s
@@ -772,6 +784,8 @@ li
         height: 50rem
     @media(max-width: 450px)
         height: 45rem
+    @media(max-width: 400px)
+        height: 40rem
     box-sizing: border-box
     padding: 10px
 
@@ -786,6 +800,8 @@ li
 
 .carousel-3d nav 
     display: flex
+    @media(max-width: 400px)
+        display: block
     justify-content: center
     margin: 20px 0 0
 

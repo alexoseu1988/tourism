@@ -11,11 +11,13 @@
     </div>
 </header>
 <section class="our-tours">
+    {% if tours %}
     <div>
         <h2 class="section-title text-color-turq" id="tours">ТУРИ</h2>
     </div>
+    {% endif %}
     <div class="our-tours__wrapper">
-        {% for tour in tours %}
+        {% for tour in view_tours %}
             <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
                 <h2>{{ tour.title1 }}</h2>
                 <a class="btn2 background-white" href="{% url 'tour_galery' tour.pk %}">ПЕРЕГЛЯНУТИ</a>
@@ -25,9 +27,11 @@
 </section>
 
 <section class="our-tours">
+    {% if view_holidays %}
     <div>
         <h2 class="section-title text-color-turq" id="holidays">ПОЇЗДКИ ВИХІДНОГО ДНЯ</h2>
     </div>
+    {% endif %}
     <div class="our-tours__wrapper">
         {% for tour in view_holidays %}
             <div class="our-tours__card text-color-white" style="background: linear-gradient(90deg, rgba(70, 70, 70, 0.5) 0.03%, rgba(70, 70, 70, 0.5) 99.94%), url({{ tour.image3Section2.url }}) center / cover no-repeat;">
