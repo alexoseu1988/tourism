@@ -9,7 +9,7 @@ class Tour(models.Model):
     title1 = models.CharField(null=True, max_length=50, verbose_name="Назва 1 строка")
     title2 = models.CharField(null=True, max_length=50, verbose_name="Назва 2 строка")
     dateStart = models.DateField(null=True, verbose_name="Дата початку туру")
-    dateEnd = models.DateField(null=True, verbose_name="Дата закінчення туру")
+    dateEnd = models.DateField(null=True, blank=True, verbose_name="Дата закінчення туру")
     
     tagline = models.CharField(max_length=55, verbose_name="Слоган для 2 секції")
     description = models.TextField(max_length=1000, verbose_name="Опис для 2 секції")
@@ -19,6 +19,10 @@ class Tour(models.Model):
     
     priceAdult = models.CharField(null=True, blank=True, max_length=15, verbose_name="Ціна для дорослих")
     priceChild = models.CharField(null=True, blank=True, max_length=15, verbose_name="Ціна для дітей")
+    dateBeforeAdult = models.DateField(null=True, blank=True, verbose_name="Дата, до якої діє скидка дорослим")
+    dateBeforeChild = models.DateField(null=True, blank=True, verbose_name="Дата, до якої діє скидка дітям")
+    priceAdultBefore = models.CharField(null=True, blank=True, max_length=15, verbose_name="Ціна для дорослих зі скидкою")
+    priceChildBefore = models.CharField(null=True, blank=True, max_length=15, verbose_name="Ціна для дітей зі скидкою")
     
     isActive = models.BooleanField(null=True, default=True, verbose_name="Діючий тур")
     isOutside = models.BooleanField(null=True,default=True, verbose_name="Закордонний тур")

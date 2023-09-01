@@ -158,12 +158,18 @@
                 <div class="inclusive__price-card">
                     <h2>ДЛЯ ДОРОСЛИХ</h2>
                     <p class='price'>{{tour.priceAdult}}</p>
+                    {% if tour.priceAdultBefore %}
+                    <p class='price'>Якщо забронювати до<br><br>{{tour.dateBeforeAdult}}<br><br>{{tour.priceAdultBefore}}</p>
+                    {% endif %}
                     <a href="{% url 'change_price_adult' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
                     <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
                 </div>
                 <div class="inclusive__price-card">
                     <h2>ДЛЯ ДІТЕЙ</h2>
                     <p class='price'>{{tour.priceChild}}</p>
+                    {% if tour.priceChildBefore %}
+                    <p class='price'>Якщо забронювати до<br><br>{{tour.dateBeforeChild}}<br><br>{{tour.priceChildBefore}}</p>
+                    {% endif %}
                     <a href="{% url 'change_price_child' tour.pk %}"><img src={% static "img/edit.svg" %} alt="Редактировать" class="edit__img-text"></a>
                     <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
                 </div>

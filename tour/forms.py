@@ -98,12 +98,18 @@ class DescriptionForm(forms.ModelForm):
 class PriceAdultForm(forms.ModelForm):
     class Meta:
         model = Tour
-        fields = ('priceAdult',)
+        fields = ('priceAdult', 'dateBeforeAdult', 'priceAdultBefore',)
+        widgets = {
+                'dateBeforeAdult': forms.SelectDateWidget(empty_label=("Рік", "Місяць", "День")),
+            }
         
 class PriceChildForm(forms.ModelForm):
     class Meta:
         model = Tour
-        fields = ('priceChild',)
+        fields = ('priceChild', 'dateBeforeChild', 'priceChildBefore',)
+        widgets = {
+                'dateBeforeChild': forms.SelectDateWidget(empty_label=("Рік", "Місяць", "День")),
+            }
     
 class DayForm(forms.ModelForm):
     class Meta:

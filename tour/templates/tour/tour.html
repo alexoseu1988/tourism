@@ -97,7 +97,7 @@
                 <div class="inclusive__card">
                     <img src="{{card.icon.icon.url}}" alt="{{card.icon.title}}">
                     <h3>{{card.title}}</h3>
-                    <p class="price">{{card.price}}</p>
+                    <p class="price">{{card.price|default_if_none:"На місці"}}</p>
                     <p>{{card.description}}</p>
                 </div>
                 {% endfor %}
@@ -111,11 +111,19 @@
                 <div class="inclusive__price-card">
                     <h2>ДЛЯ ДОРОСЛИХ</h2>
                     <p class='price'>{{tour.priceAdult}}</p>
+                    {% if tour.priceAdultBefore %}
+                    <p class='price-about'>Якщо забронювати до<br>{{tour.dateBeforeAdult}}:</p>
+                    <p class='price'>{{tour.priceAdultBefore}}</p>
+                    {% endif %}
                     <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
                 </div>
                 <div class="inclusive__price-card">
                     <h2>ДЛЯ ДІТЕЙ</h2>
                     <p class='price'>{{tour.priceChild}}</p>
+                    {% if tour.priceChildBefore %}
+                    <p class='price-about'>Якщо забронювати до<br>{{tour.dateBeforeChild}}:</p>
+                    <p class='price'>{{tour.priceChildBefore}}</p>
+                    {% endif %}
                     <a href="#order" class="btn background-white">ЗАБРОНЮВАТИ</a>
                 </div>
             </div>
