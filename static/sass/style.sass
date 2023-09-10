@@ -6,81 +6,72 @@ $color-white: #ffffff
 $color-white-transparent: rgba(255, 255, 255, 0.9)
 $color-grey-transparent: rgba(70, 70, 70, 0.5)
 $color-turq: #1F9DAC
-    
-*
-    margin: 0
-    padding: 0
-    box-sizing: border-box
+$color-turq-transparent: rgba($color-turq, 0.5)
+$color-background: #f7f7f7
+$color-footer: #333333
 
-html
-    font-size: 10px
+@mixin respond($breakpoint)
+    @if $breakpoint == phone
+        @media(max-width: 600px)
+            @content
+    @if $breakpoint == tablet
+        @media(max-width: 900px)
+            @content
+    @if $breakpoint == desctop
+        @media(max-width: 1200px)
+            @content
 
-body
-    font-family: "Roboto"
-    font-weight: 400
-    color: #777777
-    font-size: 1.6rem
-    letter-spacing: .2rem
-    padding: 0rem
-    background-color: white
-
-h3
-    margin-bottom: 2rem
-
-p
-    margin-bottom: 3rem
-
-li
-    margin-bottom: 1rem
-
-.navigation
-    position: fixed
-    display: block
-    height: 0
-    right: 0
-    height: 100vh
-    width: 25%
-    background-color: $color-turq
-    color: $color-white
-    text-align: center
-    z-index: 3
-    &__cross
-        position: absolute
-        display: block
-        top: 5rem
-        right: 5rem
-        height: 5rem
-        width: 5rem
-    &__lnk
-        position: absolute
-        top: 30%
-        left: 50%
-        transform: translate(-50%, -50%)
-    &__lnk li
+@mixin form-style($color, $text-color, $border-color)
+    padding: 3rem
+    background-color: $color
+    border-radius: 1rem
+    h2
+        margin-bottom: 5rem
+        color: $color-white
         margin-bottom: 2rem
-        list-style-type: none
-    &__lnk li a
-        &:link, &:visited
-            color: $color-white
-            font-size: 3rem
-            text-decoration: none
-            style-type: none
+    hr
+        width: 40%
+        border: .2rem solid $color-turq
+    p
+        color: $text-color
+        label
+            display: block
+            margin-bottom: 2rem
+        input, select, textarea
+            font-size: 2rem
+            border: .1rem solid $border-color
+            padding: 1rem
+            border-radius: .5rem
+        input, textarea
+            width: 100%
+        select
+            width: 30%
+            margin-right: 2rem
+    button
+        display: block
+        padding: 1rem 3rem
+        border: .3rem solid $color-turq
+        border-radius: 1rem
+        background-color: $color-turq
+        color: $color-white
+        cursor: pointer
+        font-size: 1.6rem
+        font-weight: 600
+        text-align: center
         &:hover
-            border-bottom: .1rem solid $color-white
+            border: .3rem solid $color-turq
+            background-color: $color-white
+            color: $color-turq
 
-    
-.container
-    background-color: #f7f7f7
-
-.header
+@mixin mheader($height)
     position: relative
-    height: 80vh
+    height: $height
     &__logo
         position: absolute
-        top: 5rem
-        left: 5rem
-        height: 7rem
-        width: 5.6rem
+        top: 1rem
+        left: 1rem
+        height: 15rem
+        width: 15rem
     &__box
         position: absolute
         top: 50%
@@ -98,8 +89,99 @@ li
         background-color: $color-white
         color: $color-grey
         font-size: 6rem
+        @media(max-width: 400px)
+            font-size: 8rem
         font-weight: 800
         text-align: center
+        cursor: pointer
+
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html
+    font-size: 62.5%
+    @include respond(desctop)
+        font-size: 50%
+    @include respond(tablet)
+        font-size: 45%
+    @include respond(phone)
+        font-size: 40%
+
+body
+    font-family: "Roboto"
+    font-weight: 400
+    color: #777777
+    font-size: 1.6rem
+    @include respond(tablet)
+        font-size: 1.8rem
+    @include respond(phone)
+        font-size: 2rem
+    letter-spacing: .2rem
+    padding: 0rem 2%
+    background-color: white
+
+h3
+    margin-bottom: 2rem
+
+p
+    margin-bottom: 3rem
+
+li
+    margin-bottom: 1rem
+
+.navigation
+    position: fixed
+    display: none
+    top: 0
+    right: 0
+    height: 100vh
+    width: 25%
+    @include respond(desctop)
+        width: 50%
+    @include respond(tablet)
+        width: 50%
+    @include respond(phone)
+        width: 100%
+    background-color: $color-turq
+    text-align: center
+    z-index: 3
+    &__cross
+        position: absolute
+        top: 5rem
+        right: 5rem
+        height: 5rem
+        width: 5rem
+        cursor: pointer
+    &__lnk
+        position: absolute
+        top: 40%
+        left: 50%
+        transform: translate(-50%, -50%)
+    &__lnk li
+        margin-bottom: 2rem
+        list-style-type: none
+    &__lnk li a
+        &:link, &:visited
+            color: $color-white
+            font-size: 3rem
+            font-weight: 600
+            text-decoration: none
+            style-type: none
+        &:hover
+            border-bottom: .1rem solid $color-white
+
+    
+.container
+    background-color: $color-background
+
+.header
+    @include mheader(80vh)
+    
+.form-header
+    @include mheader(30vh)
 
 .title-first
     animation-name: leftToRight
@@ -112,8 +194,12 @@ li
         font-size: 5rem
         line-height: 6rem
         letter-spacing: 1rem
+        @include respond(phone)
+            padding: 10%
     &__secondary
         display: block
+        @include respond(phone)
+            display: none
         font-weight: 400
         font-size: 4rem
         line-height: 4.8rem
@@ -131,49 +217,99 @@ li
 .btn
     &:link, &:visited
         text-decoration: none
-        padding: 1.5rem 4rem
+        padding: 1.5rem 1.5rem
         border-radius: 5rem
         display: inline-block
         transition: all .2s
         font-size: 2rem
+        @include respond(tablet)
+            display: block
+            margin: 2rem 10%
+            text-align: center
+        @include respond(phone)
+            display: block
+            margin: 2rem 10%
     &:hover
         transform: translateY(-.3rem)
         box-shadow: (0 .4rem .4rem rgba($color-black, 0.5))
     &:active
         transform: translateY(.2rem)
+
+.btn2
+    &:link, &:visited
+        text-decoration: none
+        padding: 1rem 1.5rem
+        border-radius: 2rem
+        display: inline-block
+        transition: all .2s
+        font-size: 2rem
+    &:hover
+        box-shadow: (0 .4rem .4rem rgba($color-black, 0.5))
         
 .section-about
-    padding-top: 8rem
+    h2
+        text-transform: uppercase
+    p
+        font-size: 2rem
+        font-weight: 300
     &__wrapper
         width: 100%
         display: flex
+        flex-wrap: wrap
         justify-content: space-around
     &__part
         width: 50%
-        padding: 3rem
+        @include respond(desctop)
+            width: 100%
+        @include respond(tablet)
+            width: 100%
+        @include respond(phone)
+        padding: 3rem 5%
+
+.section-change-tour
+    padding: 3rem 5%
+    &__wrapper
+        padding: 2rem
+        span
+            display: inline-block
+            width: 33%
+            font-size: 2rem
+            font-weight: 500
 
 .section-title
         font-size: 3.6rem
         letter-spacing: 1rem
         font-weight: 800
         text-align: center
-        margin-bottom: 5rem
+        margin-bottom: 1rem
 
 .composition
+    display: block
+    @include respond(desctop)
+        display: none
+    @include respond(tablet)
+        display: none
+    @include respond(phone)
+        display: none
     position: relative
     min-height: 45rem
+    @media(max-width: 1650px)
+        min-height: 40rem
+    @media(max-width: 1450px)
+        min-height: 35rem
+    margin-bottom: 3rem
     &__photo
         width: 55%
         border-radius: .5rem
         position: absolute
         &_1
-            top: 0rem
+            top: 1rem
             left: 2rem
         &_2
-            top: 8rem
+            top: 9rem
             left: 35%
         &_3
-            top: 16rem
+            top: 17rem
             left: 10rem
 
 .to-front
@@ -182,11 +318,12 @@ li
         transform: scale(1.3)
 
 .shedule
-    margin: 0 8rem
+    margin: 0 3%
     &__wrapper
         width: 100%
         position: relative
         display: flex
+        flex-wrap: wrap
         justify-content: space-around
         margin-bottom: 3rem
         background-color: $color-white
@@ -194,19 +331,75 @@ li
     &__photo
         position: relative
         width: 40%
-        img
+        overflow: hidden
+        @include respond(desctop)
+            width: 50%
+        @include respond(tablet)
             width: 100%
-            height: 40rem
+        @include respond(phone)
+            width: 100%
+        img
+            position: absolute
+            top: 0
+            left: 0
+            min-width: 100%
+            width: auto
+            min-height: 40rem
+            height: 100%
+            @media(max-width: 1650px)
+                min-height: 37rem
+            @media(max-width: 1500px)
+                min-height: 35rem
+            @media(max-width: 1350px)
+                min-height: 33rem
+            @media(max-width: 1200px)
+                min-height: 40rem
+            @media(max-width: 1050px)
+                min-height: 37rem
+            @media(max-width: 900px)
+                position: relative
+                width: 100%
+                height: auto
+            @media(max-width: 600px)
+                height: auto
+            // @media(max-width: 450px)
+            //     min-height: 40rem
+            // @media(max-width: 420px)
+            //     min-height: 38rem
+            // @media(max-width: 380px)
+            //     min-height: 36rem
     &__text
-        width: 60%
-        padding: 3rem 7rem
+        flex: 1
+        width: 40%
+        @include respond(desctop)
+            width: 50%
+        @include respond(tablet)
+            width: 100%
+        @include respond(phone)
+            width: 100%
+        min-height: 40rem
+        @media(max-width: 1650px)
+            min-height: 37rem
+        @media(max-width: 1500px)
+            min-height: 35rem
+        @media(max-width: 1350px)
+            min-height: 33rem
+        @media(max-width: 1200px)
+            min-height: 40rem
+        @media(max-width: 1050px)
+            min-height: 37rem
+        @media(max-width: 600px)
+            min-height: 42rem
+        padding: 3rem 3%
+        li
+            list-style-type: none
     .prev, .next
         cursor: pointer
         position: absolute
+        transform: translate(-0%, -50%)
         top: 50%
         width: auto
-        margin-top: -22px
-        padding: 16px
+        padding: 25% 16px
         color: white
         font-weight: bold
         font-size: 18px
@@ -244,16 +437,28 @@ li
         
 .inclusive
     position: relative
-    padding: 5rem 13rem
+    padding: 5rem 2%
+    @include respond(desctop)
+        padding: 4rem 2%
+    @include respond(tablet)
+        padding: 4rem 5%
+    @include respond(phone)
+        padding: 3rem 10%
     &__wrapper
         width: 100%
         display: flex
         justify-content: center
         flex-wrap: wrap
-        gap: 6rem
+        gap: 3rem 2%
     &__card
         position: relative
         width: 22%
+        @include respond(desctop)
+            width: 30%
+        @include respond(tablet)
+            width: 47%
+        @include respond(phone)
+            width: 100%
         height: 45rem
         padding: 5rem 3rem
         background-color: $color-white-transparent
@@ -264,8 +469,15 @@ li
         width: 7rem
         margin-bottom: 3rem
     &__price-card
+        width: 22%
+        @include respond(desctop)
+            width: 30%
+        @include respond(tablet)
+            width: 47%
+        @include respond(phone)
+            width: 100%
         height: 50rem
-        padding: 5rem
+        padding: 5rem 3rem
         color: $color-white
         text-shadow: (0 0 3rem rgba($color-black, 0.9))
         background: linear-gradient(135deg, rgba(31, 157, 172, 0.58) 3.65%, #1F9DAC 100%)
@@ -278,6 +490,12 @@ li
     &__popular-card
         height: 50rem
         width: 25%
+        @include respond(desctop)
+            width: 35%
+        @include respond(tablet)
+            width: 47%
+        @include respond(phone)
+            width: 100%
         padding: 5rem
         box-shadow: (0 0 4rem rgba($color-white, 0.7))
         border: solid $color-white .1rem
@@ -288,7 +506,13 @@ li
         justify-content: space-around
 
 .our-tours
-    padding: 5rem 13rem
+    padding: 5rem 2%
+    @include respond(desctop)
+        padding: 4rem 2%
+    @include respond(tablet)
+        padding: 4rem 5%
+    @include respond(phone)
+        padding: 3rem 10%
     h2
         text-transform: uppercase
     &__wrapper
@@ -296,9 +520,15 @@ li
         display: flex
         justify-content: center
         flex-wrap: wrap
-        gap: 6rem
+        gap: 3rem 2%
     &__card
         width: 22%
+        @include respond(desctop)
+            width: 30%
+        @include respond(tablet)
+            width: 47%
+        @include respond(phone)
+            width: 100%
         height: 40rem
         padding: 5rem 3rem
         box-shadow: (0 0 2rem rgba($color-grey, 0.5))
@@ -312,27 +542,146 @@ li
     font-weight: 600
     font-size: 4rem
 
+.price-about
+    font-weight: 400
+    font-size: 2rem
 
 .order
     position: relative
-    padding: 10rem
+    padding: 10rem 6%
     &__wrapper
         background-color: $color-white-transparent
         padding: 5rem
-        text-align: center
+        display: flex
+        flex-wrap: wrap
+        gap: 1%
+        justify-content: space-around
+        .come-with-us
+            @include respond(desctop)
+                display: none
+        .half
+            width: 49%
+            @include respond(desctop)
+                width: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-wrap: wrap
+            div
+                width: 100%
+            img
+                width: 100%
+                @include respond(desctop)
+                    display: none
 
 .section-feedback
-    padding: 5rem
+    padding: 5rem 5%
+    &__wrapper
+        display: flex
+        gap: 2%
+        justify-content: left
+        flex-wrap: wrap
     &__feedback
+        width: 49%
+        @include respond(desctop)
+            width: 100%
         position: relative
         background-color: $color-white
         padding: 3rem
         margin-bottom: 3rem
         border-radius: 1rem
-        border: .1rem solid $color-turq
+        border: .1rem solid $color-white
+        display: flex
+        gap: 3rem
+        justify-content: left
+        img
+            height: 5rem
+            width: 5rem
         & span
             display: inline-block
-            border-bottom: .1rem solid $color-turq
+            font-size: 2.5rem
+            font-weight: 800
+            margin-right: 3rem
+            border-bottom: .2rem solid $color-turq
+        p
+            a
+                &:link, &:visited
+                    color: $color-turq
+
+.section-apply
+    padding: 5rem 5%
+    &__wrapper
+        display: flex
+        gap: 2%
+        justify-content: left
+        flex-wrap: wrap
+    &__apply
+        width: 100%
+        position: relative
+        background-color: $color-white
+        padding: 3rem
+        margin-bottom: 3rem
+        border-radius: 1rem
+        border: .1rem solid $color-white
+        display: flex
+        gap: 3rem
+        justify-content: left
+        .number
+            color: $color-turq
+            font-size: 5rem
+        img
+            height: 5rem
+            width: 5rem
+        & span
+            display: inline-block
+            font-size: 2.5rem
+            font-weight: 800
+            margin-right: 3rem
+            border-bottom: .2rem solid $color-turq
+        p
+            a
+                &:link, &:visited
+                    color: $color-turq
+
+.section-contacts
+    padding: 5rem 5%
+    &__wrapper
+        display: flex
+        gap: 2%
+        justify-content: left
+        flex-wrap: wrap
+        background-color: $color-white
+        padding: 3rem
+        margin-bottom: 3rem
+        border-radius: 1rem
+        border: .1rem solid $color-white
+    &__contacts
+        width: 100%
+        position: relative
+        display: flex
+        gap: 3rem
+        justify-content: left
+        img
+            height: 5rem
+            width: 5rem
+        & span
+            display: inline-block
+            font-size: 2.5rem
+            font-weight: 800
+            margin-right: 3rem
+            line-height: 5rem
+        p
+            a
+                &:link, &:visited
+                    color: $color-turq
+
+
+.form-wrapper
+    @include form-style($color-footer, $color-white, $color-white)
+    
+
+.form-wrapper-light
+    @include form-style(rgba($color-white-transparent, 0), $color-footer, $color-turq)
 
 .change-day
     &__image
@@ -361,6 +710,9 @@ li
 
 .margin-bottom-80
     margin-bottom: 8rem
+
+.size-20
+    font-size: 2rem
 
 .background
     background: linear-gradient(90deg, $color-grey-transparent 0.03%, $color-grey-transparent 99.94%), url(../img/main.jpg) center / cover no-repeat
@@ -407,14 +759,20 @@ li
 .footer
     color: $color-white
     background-color: #333333
-    padding: 6rem
+    padding: 1.5rem
     &__logo
         margin: auto
-        margin-bottom: 5rem
-        height: 7rem
-        width: 5.6rem
+        margin-bottom: 1.5rem
+        height: 20rem
+        width: 20rem
     &__lnk
         display: flex
+        @include respond(tablet)
+            display: block
+            text-align: center
+        @include respond(phone)
+            display: block
+            text-align: center
         gap: 7rem
         justify-content: center
     &__lnk li
@@ -434,3 +792,80 @@ li
     100%
         opacity: 1
         
+
+.carousel-3d
+    padding: 20px
+    -webkit-perspective: 10000px
+    perspective: 10000px
+    display: flex
+    flex-direction: column
+    align-items: center
+    overflow: hidden
+
+.carousel-3d > * 
+    flex: 0 0 auto
+
+.carousel-3d figure 
+    margin: 0
+    width: 60%
+    @media(max-width: 1500px)
+        width: 70%
+    @media(max-width: 1350px)
+        width: 80%
+    @media(max-width: 750px)
+        width: 90%
+    @media(max-width: 650px)
+        width: 95%
+    @media(max-width: 400px)
+        width: 99%
+    -webkit-transform-style: preserve-3d
+    transform-style: preserve-3d
+    transition: -webkit-transform 0.5s
+    transition: transform 0.5s
+    transition: transform 0.5s, -webkit-transform 0.5s
+
+.carousel-3d figure img,
+.carousel-3d figure div 
+    width: 100%
+    height: 60rem
+    @media(max-width: 550px)
+        height: 55rem
+    @media(max-width: 500px)
+        height: 50rem
+    @media(max-width: 450px)
+        height: 45rem
+    @media(max-width: 400px)
+        height: 40rem
+    box-sizing: border-box
+    padding: 10px
+
+.carousel-3d figure img 
+    user-select: none
+
+.carousel-3d figure div:not(:first-of-type),
+.carousel-3d figure img:not(:first-of-type) 
+    position: absolute
+    left: 0
+    top: 0
+
+.carousel-3d nav 
+    display: flex
+    @media(max-width: 400px)
+        display: block
+    justify-content: center
+    margin: 20px 0 0
+
+.carousel-3d nav button 
+    flex: 0 0 auto
+    margin: 0 5px
+    cursor: pointer
+    color: #337AB7
+    background: #BFE2FF
+    border: 1px solid #337AB7
+    padding: 5px 10px
+    font-weight: bold
+    transition: all .3s ease
+
+.carousel-3d nav button:hover 
+    color: #FFF
+    background: #337AB7
