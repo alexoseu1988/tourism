@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6t)o!jd!syf&1a(xabxitsgnferyma2m2us*@&^!zr@ljrgh8d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tour.apps.TourConfig',
     'ckeditor',
-    'phonenumber_field',
     
 ]
 
